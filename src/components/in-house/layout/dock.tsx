@@ -1,3 +1,4 @@
+import React from "react";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import {
   Tooltip,
@@ -44,9 +45,23 @@ const DATA = {
 };
 
 export default function CustomDock() {
+  const [hasAnimated, setHasAnimated] = React.useState(false);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setHasAnimated(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <TooltipProvider>
-      <Dock className="fixed bottom-7 left-1/2 -translate-x-1/2" direction="middle">
+      <Dock
+        className={cn(
+          "fixed bottom-7 left-1/2 -translate-x-1/2",
+          !hasAnimated &&
+            "animate-in slide-in-from-bottom fade-in duration-500 delay-[1000ms] fill-mode-both",
+        )}
+        direction="middle"
+      >
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -54,7 +69,7 @@ export default function CustomDock() {
                 <AnimatedThemeToggler
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12 rounded-full cursor-pointer"
+                    "size-12 rounded-full cursor-pointer",
                   )}
                 />
               </div>
@@ -76,7 +91,7 @@ export default function CustomDock() {
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full"
+                      "size-12 rounded-full",
                     )}
                     target="_blank"
                   >
