@@ -46,7 +46,7 @@ const DATA = {
 export default function CustomDock() {
   return (
     <TooltipProvider>
-      <Dock direction="middle">
+      <Dock className="fixed bottom-7 left-1/2 -translate-x-1/2" direction="middle">
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
