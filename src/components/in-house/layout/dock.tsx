@@ -8,6 +8,8 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
+import { Separator } from "@/components/ui/separator";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 const Icons = {
   linkedin: () => <Icon icon="akar-icons:linkedin-fill" />,
@@ -45,6 +47,24 @@ export default function CustomDock() {
   return (
     <TooltipProvider>
       <Dock direction="middle">
+        <DockIcon>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div>
+                <AnimatedThemeToggler
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-12 rounded-full cursor-pointer"
+                  )}
+                />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Toggle Theme</p>
+            </TooltipContent>
+          </Tooltip>
+        </DockIcon>
+        <Separator orientation="vertical" />
         {Object.entries(DATA.contact).map(([name, social]) => {
           const IconComponent = social.icon;
           return (
