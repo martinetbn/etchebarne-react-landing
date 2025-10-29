@@ -1,5 +1,3 @@
-export function App() {
+export default function App() {
   return <div>Etchebarne</div>;
 }
-
-export default App;
